@@ -29,6 +29,9 @@ jobs:
           npm config set registry http://${{ secrets.NPM_REGISTRY }}
       - name: Setup dependencies
         uses: ./.github/actions/cached-node-modules
+        with:
+          # We don't build the packages here as we want to version them first
+          build: false
       - name: Version
         run: |
           # Version all packages to next major version (2.0.0) without pushing to git, generating changelog or running commit hooks
@@ -46,7 +49,6 @@ jobs:
         run: |
           # Increment the version in the UA
           echo -e "// this file is auto generated, do not modify\nexport const PT_VERSION = '2.0.0-alpha.$(jq -r '.iteration' v2.json)';" > packages/commons/src/version.ts
-          cat packages/commons/src/version.ts
       - name: Build
         run: |
           npm run build -w packages/commons \
@@ -69,7 +71,7 @@ jobs:
         run: |
           npm publish aws-lambda-powertools-batch-*.tgz --tag next
           npm publish aws-lambda-powertools-commons-*.tgz --tag next
-          npm publish aws-lambda-powertools-idempotency-*.tgz --tag
+          npm publish aws-lambda-powertools-idempotency-*.tgz --tag next
           npm publish aws-lambda-powertools-logger-*.tgz --tag next
           npm publish aws-lambda-powertools-metrics-*.tgz --tag next
           npm publish aws-lambda-powertools-parameters-*.tgz --tag next

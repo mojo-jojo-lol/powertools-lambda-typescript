@@ -36,7 +36,7 @@ jobs:
       - name: Set alpha iteration
         run: |
           # Get the current alpha version from npm i.e 2.0.0-alpha.0 -> 0, 2.0.0-alpha.1 -> 1 (default to -1 if no alpha versions exist = first pre-release)
-          ITERATION=$(npm show @aws-lambda-powertools/commons time --json | jq -r 'to_entries | map(select(.key | startswith("2.0.0-alpha"))) | sort_by(.key) | last | .key // "-1"')
+          ITERATION=$(npm show @aws-lambda-powertools/commons time --json | jq -r 'to_entries | map(select(.key | startswith("2.0.0-alpha"))) | sort_by(.key) | last | .key // "-1"' | cut -d '.' -f 4)
           # Write the new version to the file
           echo "{ \"iteration\": $((ITERATION + 1)) }" > v2.json
       - name: Increment version in UA

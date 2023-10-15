@@ -25,7 +25,7 @@ jobs:
           cache: 'npm'
       - name: Setup auth tokens
         run: |
-          npm set "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}"
+          npm set "//${{ secrets.NPM_REGISTRY }}/:_authToken=${{ secrets.NPM_TOKEN }}"
       - name: Setup dependencies
         uses: ./.github/actions/cached-node-modules
       - name: Version

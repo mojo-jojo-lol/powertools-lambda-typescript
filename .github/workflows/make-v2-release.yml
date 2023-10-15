@@ -67,13 +67,13 @@ jobs:
             -w packages/tracer
       - name: Publish to npm
         run: |
-          npm publish aws-lambda-powertools-batch-*.tgz --tag next --provenance
-          npm publish aws-lambda-powertools-commons-*.tgz --tag next --provenance
-          npm publish aws-lambda-powertools-idempotency-*.tgz --tag next --provenance
-          npm publish aws-lambda-powertools-logger-*.tgz --tag next --provenance
-          npm publish aws-lambda-powertools-metrics-*.tgz --tag next --provenance
-          npm publish aws-lambda-powertools-parameters-*.tgz --tag next --provenance
-          npm publish aws-lambda-powertools-tracer-*.tgz --tag next --provenance
+          npm publish aws-lambda-powertools-batch-*.tgz --tag next
+          npm publish aws-lambda-powertools-commons-*.tgz --tag next
+          npm publish aws-lambda-powertools-idempotency-*.tgz --tag
+          npm publish aws-lambda-powertools-logger-*.tgz --tag next
+          npm publish aws-lambda-powertools-metrics-*.tgz --tag next
+          npm publish aws-lambda-powertools-parameters-*.tgz --tag next
+          npm publish aws-lambda-powertools-tracer-*.tgz --tag next
       - name: Set release version
         id: set-release-version
         run: |
